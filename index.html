@@ -69,12 +69,14 @@
     console.log($btn);
   var btn =   document.getElementById("btn");
   var txt = document.getElementById("txt");
-  btn.addEventListener("touchstart",function(){
+  btn.addEventListener("touchstart",function(e){
     c1++;
     this.innerHTML = "";
     start = Date.now();
+    //安卓手机阻止浏览器默认事件
+    e.preventDefault();
   });
-  btn.addEventListener("touchend",function(){
+  btn.addEventListener("touchend",function(e){
     end = Date.now();
     t = end -start;
     if(Math.abs(t - 1000) < 50){
@@ -86,7 +88,8 @@
       }
     }
      this.innerHTML += t/1000 + "秒";
-
+     //安卓手机阻止浏览器默认事件
+     e.preventDefault();
   });
   </script>
 </body>
