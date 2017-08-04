@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>1秒有多长</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <style>
+  .navbar{
+    background-color: skyblue;
+    font-size:20px;;
+  }
+  .main{
+    width:100%;
+    margin:100px auto;
+    display:flex;
+    justify-content: center;
+  }
+  .touch-button{
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+
+  }
+  .txt{
+    margin:0 auto;
+    text-align: center;
+    width:100%;
+  }
+  .copyrigth{
+    width:100%;
+    background-color: #000;
+    font-size:20px;
+    color:#fff;
+    text-align:center;
+    position:fixed;
+    bottom:0px;
+  }
+  .btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
+}
+  </style>
+</head>
+<body>
+  <nav class="navbar">按下按钮后一定时间松开，看看你按下去的时间和一秒钟的差距，最起码玩个5次吧</nav>
+  <div class="main">
+    <button type="button"class="btn btn-primary touch-button" id="btn"></button>
+  </div>
+  <div class="txt">
+  <span id="txt">时间差50毫秒为优秀成绩</span>
+  </div>
+  <footer class="copyrigth">qinxiaoheng@版权信息</footer>
+
+  <script type="text/javascript">
+    var start,
+        end,
+        t,
+        c1=0,
+        c2=0;
+    var $btn =$("btn");
+    console.log($btn);
+  var btn =   document.getElementById("btn");
+  var txt = document.getElementById("txt");
+  btn.addEventListener("touchstart",function(){
+    c1++;
+    this.innerHTML = "";
+    start = Date.now();
+  });
+  btn.addEventListener("touchend",function(){
+    end = Date.now();
+    t = end -start;
+    if(Math.abs(t - 1000) < 50){
+      this.innerHTML = "你好厉害哦！";
+      c2++;
+      txt.innerHTML = this.innerHTML+"时间为："+t/1000;
+      if(c1>=5){
+        alert("10次内接近1秒50毫秒的次数为："+c2);
+      }
+    }
+     this.innerHTML += t/1000 + "秒";
+
+  });
+  </script>
+</body>
+</html>
